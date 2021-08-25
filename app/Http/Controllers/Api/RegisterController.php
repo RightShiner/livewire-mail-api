@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,8 +14,8 @@ class RegisterController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|min:8',
         ]);
         $user = User::create([
             'name' => $request->name,
@@ -22,6 +23,10 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'api_token' => Str::random(40),
         ]);
-        return response()->json($user);
+        return (new UserResource($user))->additional([
+            'meta' => [
+                'token' => $user->api_token,
+            ]
+        ]);
     }
 }

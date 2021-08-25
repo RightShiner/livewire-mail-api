@@ -59,4 +59,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function ownsPost(Post $post)
+    {
+        return auth()->id() === $post->user->id;
+    }
 }
