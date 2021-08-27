@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\CreatePost;
+use App\Http\Livewire\CreateProduk;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::get('post', CreatePost::class)->name('post');
+Route::get('produk', CreateProduk::class)->name('produk');

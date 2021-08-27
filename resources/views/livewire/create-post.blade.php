@@ -13,7 +13,7 @@
                 placeholder="Ketik Sesuatu..."></textarea>
             <div class="flex justify-end">
                 <button wire:click="createPost"
-                    class="px-4 py-2 bg-blue-600 text-blue hover:bg-blue-400 rounded-md">Post</button>
+                    class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-400 rounded-md">Post</button>
             </div>
             <livewire:list-post />
         </div>
